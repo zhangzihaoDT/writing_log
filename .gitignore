@@ -184,3 +184,6 @@ tmp/
 .DS_Store*
 ehthumbs.db
 Thumbs.db
+
+# PDF files
+*.pdf
