@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>10%/30年未来价值对比｜Plotly</title>
+    <style>
+      :root {
+        --bg: #0b0d12;
+        --panel: #12151c;
+        --card: #171b23;
+        --text: #e9edf3;
+        --muted: #a9b3c3;
+        --primary: #4f8cff;
+        --accent: #22d3ee;
+        --border: #222733;
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          'Helvetica Neue', Arial, 'Noto Sans', 'PingFang SC',
+          'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+        background: radial-gradient(
+            1200px 600px at 10% -10%,
+            #172036 0%,
+            var(--bg) 40%
+          ),
+          var(--bg);
+        color: var(--text);
+      }
+      .container {
+        max-width: 1080px;
+        margin: 0 auto;
+        padding: 24px;
+      }
+      header.hero {
+        background: linear-gradient(
+          180deg,
+          rgba(79, 140, 255, 0.12),
+          rgba(79, 140, 255, 0)
+        );
+        border: 1px solid var(--border);
+        border-radius: 16px;
+        padding: 20px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      }
+      h1 {
+        margin: 0;
+        font-size: 24px;
+      }
+      .subtitle {
+        color: var(--muted);
+        margin-top: 6px;
+      }
+      .panel {
+        margin-top: 16px;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 12px;
+      }
+      @media (min-width: 760px) {
+        .panel {
+          grid-template-columns: 1.2fr 1fr;
+        }
+      }
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 14px;
+        padding: 14px;
+      }
+      label {
+        display: block;
+        margin: 8px 0 6px;
+        color: var(--muted);
+      }
+      input,
+      select {
+        width: 100%;
+        padding: 8px 10px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: #0f1218;
+        color: var(--text);
+      }
+      .row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      .kpi {
+        display: flex;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      .pill {
+        display: inline-block;
+        padding: 6px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: rgba(79, 140, 255, 0.12);
+        color: #cfe0ff;
+      }
+      .btn {
+        display: inline-block;
+        padding: 8px 12px;
+        border-radius: 10px;
+        border: 1px solid var(--border);
+        background: var(--primary);
+        color: #fff;
+        text-decoration: none;
+        cursor: pointer;
+      }
+      .muted {
+        color: var(--muted);
+      }
+      #chart {
+        width: 100%;
+        height: 460px;
+      }
+    </style>
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <header class="hero">
+        <h1>10%/30年未来价值对比｜Plotly</h1>
+        <div class="subtitle">
+          负债20万与存款20万的未来差距，在不同比较框架下的数值与曲线
+        </div>
+      </header>
+      <section class="panel">
+        <div class="card">
+          <div class="row">
+            <div>
+              <label>本金（元）</label>
+              <input
+                id="principal"
+                type="number"
+                value="200000"
+                min="0"
+                step="1000"
+              />
+            </div>
+            <div>
+              <label>年数</label>
+              <input id="years" type="number" value="30" min="1" max="60" />
+            </div>
+          </div>
+          <div class="row" style="margin-top: 8px">
+            <div>
+              <label>年化利率</label>
+              <input
+                id="rate"
+                type="number"
+                value="0.0331272"
+                min="0"
+                max="1"
+                step="0.00001"
+              />
+            </div>
+            <div>
+              <label>比较框架</label>
+              <select id="mode">
+                <option value="both">两边都复利（存款↑、负债↓）</option>
+                <option value="savings">仅存款复利，负债为0</option>
+                <option value="target">设定未来差距=113.5万，求年化</option>
+                <option value="debtfirst" selected>
+                  负债先还款再存款（同等年贡献）
+                </option>
+              </select>
+            </div>
+          </div>
+          <div class="row" style="margin-top: 8px">
+            <div>
+              <label>每年贡献金额（元）</label>
+              <input
+                id="contrib"
+                type="number"
+                value="50000"
+                min="0"
+                step="1000"
+              />
+            </div>
+            <div>
+              <label>显示负债余额曲线</label>
+              <select id="showDebtBalance">
+                <option value="yes">是</option>
+                <option value="no">否</option>
+              </select>
+            </div>
+          </div>
+          <div
+            style="
+              margin-top: 12px;
+              display: flex;
+              gap: 8px;
+              align-items: center;
+            "
+          >
+            <button class="btn" id="update">计算并绘图</button>
+            <span class="muted">单位：人民币；曲线按年展示</span>
+          </div>
+          <div class="kpi" style="margin-top: 12px" id="kpis"></div>
+        </div>
+        <div class="card">
+          <div id="chart"></div>
+        </div>
+      </section>
+    </div>
+    <script>
+      function series(principal, r, n, mode) {
+        var x = []
+        var savings = []
+        var debt = []
+        for (var t = 0; t <= n; t++) {
+          var v = principal * Math.pow(1 + r, t)
+          x.push(t)
+          savings.push(v)
+          if (mode === 'savings') debt.push(0)
+          else debt.push(-v)
+        }
+        var gap = mode === 'savings' ? savings[n] : savings[n] - debt[n]
+        return { x: x, savings: savings, debt: debt, gap: gap }
+      }
+      function solveRateForTargetGap(targetGap, principal, n) {
+        var r = Math.pow(targetGap / (2 * principal), 1 / n) - 1
+        return r
+      }
+      function seriesDebtFirst(principal, r, n, contrib) {
+        var x = []
+        var S = []
+        var W = []
+        var D = []
+        var s = principal
+        var a = 0
+        var d = principal
+        var clearedAt = null
+        for (var t = 0; t <= n; t++) {
+          x.push(t)
+          if (t > 0) {
+            s = s * (1 + r) + contrib
+            if (d > 0) {
+              d = d * (1 + r) - contrib
+              if (d <= 0 && clearedAt === null) {
+                clearedAt = t
+                d = 0
+              }
+            } else {
+              a = a * (1 + r) + contrib
+            }
+          }
+          S.push(s)
+          D.push(-d)
+          W.push(a - d)
+        }
+        var gap = S[S.length - 1] - W[W.length - 1]
+        return {
+          x: x,
+          savings: S,
+          net: W,
+          debtBalance: D,
+          gap: gap,
+          clearedAt: clearedAt,
+        }
+      }
+      function fmtYuan(x) {
+        return new Intl.NumberFormat('zh-CN', {
+          maximumFractionDigits: 0,
+        }).format(x)
+      }
+      function fmtWan(x) {
+        return (x / 10000).toFixed(3)
+      }
+      function draw() {
+        var principal = parseFloat(document.getElementById('principal').value)
+        var years = parseInt(document.getElementById('years').value)
+        var rate = parseFloat(document.getElementById('rate').value)
+        var mode = document.getElementById('mode').value
+        var contrib = parseFloat(document.getElementById('contrib').value)
+        var showDebtBal =
+          document.getElementById('showDebtBalance').value === 'yes'
+        var usedRate = rate
+        if (mode === 'target') {
+          usedRate = solveRateForTargetGap(1135000, principal, years)
+        }
+        var traces = []
+        var s
+        if (mode === 'debtfirst') {
+          s = seriesDebtFirst(
+            principal,
+            usedRate,
+            years,
+            isNaN(contrib) ? 0 : contrib
+          )
+          traces.push({
+            x: s.x,
+            y: s.savings,
+            name: '存款方净值',
+            mode: 'lines',
+            line: { color: '#4f8cff', width: 3 },
+          })
+          traces.push({
+            x: s.x,
+            y: s.net,
+            name: '负债方净值',
+            mode: 'lines',
+            line: { color: '#34d399', width: 3 },
+          })
+          if (showDebtBal)
+            traces.push({
+              x: s.x,
+              y: s.debtBalance,
+              name: '负债余额',
+              mode: 'lines',
+              line: { color: '#ef4444', width: 2, dash: 'dot' },
+            })
+        } else {
+          s = series(
+            principal,
+            usedRate,
+            years,
+            mode === 'target' ? 'both' : mode
+          )
+          traces.push({
+            x: s.x,
+            y: s.savings,
+            name: '存款未来价值',
+            mode: 'lines',
+            line: { color: '#4f8cff', width: 3 },
+          })
+          traces.push({
+            x: s.x,
+            y: s.debt,
+            name: '负债未来价值',
+            mode: 'lines',
+            line: { color: '#ef4444', width: 3 },
+          })
+        }
+        var layout = {
+          plot_bgcolor: '#0f1218',
+          paper_bgcolor: '#171b23',
+          xaxis: {
+            title: '年份',
+            gridcolor: '#222733',
+            zerolinecolor: '#222733',
+          },
+          yaxis: {
+            title: '金额（元）',
+            gridcolor: '#222733',
+            zerolinecolor: '#222733',
+          },
+          legend: { orientation: 'h' },
+          margin: { l: 60, r: 24, t: 20, b: 50 },
+        }
+        Plotly.newPlot('chart', traces, layout, { displayModeBar: false })
+        var k = document.getElementById('kpis')
+        k.innerHTML = ''
+        var pills = []
+        pills.push(
+          '<span class="pill">年化：' + (usedRate * 100).toFixed(3) + '%</span>'
+        )
+        pills.push(
+          '<span class="pill">终值差距：' + fmtYuan(s.gap) + '（元）</span>'
+        )
+        pills.push(
+          '<span class="pill">终值差距：' + fmtWan(s.gap) + '（万）</span>'
+        )
+        if (mode === 'debtfirst') {
+          pills.push(
+            '<span class="pill">每年贡献：' + fmtYuan(contrib) + '</span>'
+          )
+          pills.push(
+            '<span class="pill">存款方终值：' +
+              fmtWan(s.savings[s.savings.length - 1]) +
+              '（万）</span>'
+          )
+          pills.push(
+            '<span class="pill">负债方终值：' +
+              fmtWan(s.net[s.net.length - 1]) +
+              '（万）</span>'
+          )
+          pills.push(
+            '<span class="pill">清债年份：' +
+              (s.clearedAt === null ? '未清' : s.clearedAt) +
+              '</span>'
+          )
+        } else {
+          pills.push(
+            '<span class="pill">存款终值：' +
+              fmtWan(s.savings[s.savings.length - 1]) +
+              '（万）</span>'
+          )
+          pills.push(
+            '<span class="pill">负债终值：' +
+              fmtWan(s.debt[s.debt.length - 1]) +
+              '（万）</span>'
+          )
+        }
+        k.innerHTML = pills.join('')
+      }
+      document.getElementById('update').addEventListener('click', draw)
+      draw()
+    </script>
+  </body>
+</html>
