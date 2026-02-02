@@ -5,21 +5,21 @@ description: Generate optimized image generation prompts for Jimeng 4.1 (即梦)
 
 # Jimeng Prompt Generator
 
-This skill generates prompts optimized for Jimeng 4.1 AI art generator, specifically tailored for **Industrial Design Sketch** style WeChat Official Account cover images (2.35:1 aspect ratio).
+This skill generates prompts optimized for Jimeng 4.1 AI art generator, specifically tailored for **Pixel Tech / Terminal UI** style WeChat Official Account cover images (2.35:1 aspect ratio).
 
-It emphasizes **Semantic Understanding and Visual Translation**: converting abstract concepts into concrete, sketchable visual elements before generating the final prompt.
+It emphasizes **Semantic Understanding and Visual Translation**: converting abstract concepts into concrete, digital visual elements before generating the final prompt.
 
 ## Style Description
-- **Type**: Industrial Design Sketch / Automotive Concept Art
-- **Visuals**: Pencil and marker drawing, vintage parchment paper background, technical annotations (arrows, details), rough sketch lines.
-- **Vibe**: Professional, technical, vintage, artistic.
+- **Type**: Pixel Tech / Retro Terminal UI
+- **Visuals**: Dark grid background, neon green/purple accents, monospace fonts, command line interfaces, glitch effects, data visualizations.
+- **Vibe**: Tech-savvy, geeky, mysterious, futuristic, cyber.
 
 ## Usage
 
 1.  **Analyze & Translate**:
-    -   Do NOT just pass abstract keywords (e.g., "Growth", "Future").
-    -   **Translate** abstract concepts into concrete visual scenes (e.g., "A futuristic seedling breaking through metal gears", "A glowing city on the horizon").
-    -   Combine these visuals into a cohesive scene description.
+    -   Do NOT just pass abstract keywords.
+    -   **Translate** abstract concepts into concrete digital/UI scenes (e.g., "A loading bar labeled 'Career Growth'", "A terminal window showing error logs", "Binary code raining down").
+    -   Combine these visuals into a cohesive UI scene description.
 2.  **Execute Script**:
     -   Run the python script `scripts/generate_prompt.py` with the **visual description** as arguments.
     ```bash
