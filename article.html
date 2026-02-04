@@ -1,0 +1,109 @@
+
+    <div style="font-size: 16px; line-height: 1.6; color: #333; text-align: left; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei UI', 'Microsoft YaHei', Arial, sans-serif;">
+        <h1 style="display: block; font-size: 20px; font-weight: bold; color: #222; margin-top: 40px; margin-bottom: 20px; border-left: 3px solid #ff7faa; padding-left: 12px; line-height: 1.4;">2026，个人 AI 技术栈最小清单</h1>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">一、基础语言与运行环境（只选一个）
+✅ Python（唯一推荐）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">二、模型层（云优先，不造模型）
+✅ 大模型 API（选 2 个即可）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">主模型（稳定干活）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">GPT-4.x / GPT-4o</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">Claude 3.5</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">GLM-4 / DeepSeek（性价比）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">副模型（便宜 / 批量）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">GPT-4.1-mini / DeepSeek-chat / GLM-Flash</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">你需要掌握的不是模型，而是：</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">prompt 结构化</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">function / tool calling</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">成本与延迟控制</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">三、Agent 与编排层（核心战场）
+✅ LangGraph（主力）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">这是你2026 年最重要的工具之一。</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">你要学的不是 API，而是思想：</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">State（状态）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">Node（能力）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">Edge（决策流）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">Retry / Branch / Loop</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">👉 本质：把“思考流程”变成可执行图
+可选补充</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">LangChain（只用工具封装）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">自写轻量 Agent（理解本质）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">四、工具层（让 AI 真正“能干活”）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">这是 AI 是否落地的分水岭。</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">必备工具类型
+1️⃣ 数据工具</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">SQL（DuckDB / SQLite）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">CSV / Parquet 读取</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">pandas（基础即可）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">2️⃣ 文件工具</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">本地文件读写</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">Markdown / PDF 解析（够用即可）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">3️⃣ 外部 API</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">Web search（可选）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">Notion / GitHub / Google Docs（视场景）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">原则：
+先服务你自己，再考虑通用性</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">五、记忆与上下文管理（克制使用）
+✅ 最小方案</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">文件型 memory（JSON / YAML / SQLite）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">手动分：</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">session memory</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">long-term memory</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">❌ 暂不需要</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">向量数据库</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">RAG 大工程</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">复杂 embedding pipeline</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">90% 的个人项目，用不到向量库
+用了反而让系统不可控</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">六、工程与项目结构（避免“写成一坨”）
+推荐最小项目结构
+ai-agent-project/
+├─ agents/
+│ ├─ planner.py
+│ ├─ executor.py
+│ └─ critic.py
+├─ tools/
+│ ├─ sql_tool.py
+│ └─ file_tool.py
+├─ graphs/
+│ └─ main_graph.py
+├─ memory/
+│ └─ memory.json
+├─ configs/
+│ └─ prompts.yaml
+├─ main.py
+└─ README.md</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">必须有 README，哪怕只有 10 行。</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">七、部署与展示（能跑就赢 80%）
+最小可用方案</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">本地 CLI / Streamlit</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">或简单 Web UI（FastAPI + HTML）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">❌ 暂不需要</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">Kubernetes</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">高并发</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">企业级部署</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">一句话：“能被别人跑起来的 Demo，胜过 10 个想法。”</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">八、版本管理与输出（身份构建关键）
+必须做</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">Git + GitHub</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">每个项目一个 repo</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">清晰 commit</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">强烈建议</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">写技术笔记 / 项目复盘</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">哪怕只给“未来的你”看</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">九、你现在不需要的东西（帮你挡坑）</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">请你放心地 不学、不买、不碰：</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">❌ 显卡</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">❌ 模型训练</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">❌ CUDA</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">❌ 超复杂 RAG</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">❌ 多框架对比</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">❌ AI “课程囤积”</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">最后，给你一个“今晚就能用”的起手式</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">今晚任务（≤ 2 小时）：</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">新建一个 repo</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">写 README 第一行：</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">“这个项目的目标是：把 <strong style="color: #ff7faa; font-weight: bold;">__</strong> 经验，做成一个可运行的 AI Agent。”</p>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;">不写代码也没关系，但这个 repo 一旦存在——
+你已经上路了。</p>
+    </div>
+    

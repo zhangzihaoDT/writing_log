@@ -1,0 +1,75 @@
+
+    <div style="font-size: 16px; line-height: 1.6; color: #333; text-align: left; font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei UI', 'Microsoft YaHei', Arial, sans-serif;">
+        <h1 style="display: block; font-size: 20px; font-weight: bold; color: #222; margin-top: 40px; margin-bottom: 20px; border-left: 3px solid #ff7faa; padding-left: 12px; line-height: 1.4;">2026 个人 AI 技术栈最小清单</h1>
+<blockquote style="background: #f7f7f7; border-left: 2px solid #ff7faa; padding: 16px; color: #555; margin: 24px 0; border-radius: 4px;">
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;"><strong style="color: #ff7faa; font-weight: bold;">核心原则</strong>：在技术通胀的时代，克制是最高的生产力。
+<strong style="color: #ff7faa; font-weight: bold;">目标</strong>：不争论框架，不囤积模型，只交付可运行的智能体。</p>
+</blockquote>
+<hr />
+<h2 style="display: block; font-size: 20px; font-weight: bold; color: #222; margin-top: 40px; margin-bottom: 20px; border-left: 3px solid #ff7faa; padding-left: 12px; line-height: 1.4;">🛑 负面清单 (Not-To-Do List)</h2>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;"><em>在做任何加法之前，先确认你<strong style="color: #ff7faa; font-weight: bold;">没有</strong>做以下蠢事：</em></p>
+<ul style="list-style-type: none; padding-left: 0; margin-bottom: 24px;">
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;"><span style="margin-right: 4px;">⬜</span><strong style="color: #ff7faa; font-weight: bold;">拒绝模型崇拜</strong>：不碰模型训练，不买显卡，不折腾 CUDA 环境。</li>
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;"><span style="margin-right: 4px;">⬜</span><strong style="color: #ff7faa; font-weight: bold;">拒绝架构过度</strong>：个人项目严禁引入 Kubernetes 和企业级微服务。</li>
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;"><span style="margin-right: 4px;">⬜</span><strong style="color: #ff7faa; font-weight: bold;">拒绝 RAG 滥用</strong>：90% 的场景不需要向量数据库，关键词搜索 + 上下文缓存足矣。</li>
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;"><span style="margin-right: 4px;">⬜</span><strong style="color: #ff7faa; font-weight: bold;">拒绝框架松鼠症</strong>：不学 LangChain 的 100 种用法，只用最基础的工具封装。</li>
+</ul>
+<hr />
+<h2 style="display: block; font-size: 20px; font-weight: bold; color: #222; margin-top: 40px; margin-bottom: 20px; border-left: 3px solid #ff7faa; padding-left: 12px; line-height: 1.4;">✅ 最小技术栈 (The Minimalist Stack)</h2>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;"><em>如无必要，勿增实体。这是你的生存套件：</em></p>
+<h3 style="font-size: 17px; font-weight: bold; color: #222; margin-top: 30px; margin-bottom: 16px;">1. 语言与环境</h3>
+<ul style="list-style-type: none; padding-left: 0; margin-bottom: 24px;">
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;">- <strong style="color: #ff7faa; font-weight: bold;">Python</strong>：唯一选项。</li>
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;">- <em>理由</em>：AI 的母语。除了 Python，其他都是方言。</li>
+</ul>
+<h3 style="font-size: 17px; font-weight: bold; color: #222; margin-top: 30px; margin-bottom: 16px;">2. 模型层 (Model as a Service)</h3>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;"><em>只关注 API 调用，像用水电一样使用智力。</em></p>
+<ul style="list-style-type: none; padding-left: 0; margin-bottom: 24px;">
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;">- <strong style="color: #ff7faa; font-weight: bold;">主力 (Smart)</strong>：GPT-4o / Claude 3.5 Sonnet</li>
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;">- <em>用途</em>：复杂逻辑推理、代码生成、长文本分析。</li>
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;">- <strong style="color: #ff7faa; font-weight: bold;">副手 (Fast)</strong>：DeepSeek-V3 / GLM-4-Flash</li>
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;">- <em>用途</em>：批量处理、简单分类、高频对话。</li>
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;">- <strong style="color: #ff7faa; font-weight: bold;">关键技能</strong>：</li>
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;"><span style="margin-right: 4px;">⬜</span><strong style="color: #ff7faa; font-weight: bold;">Prompt Engineering</strong>：结构化提示词编写。</li>
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;"><span style="margin-right: 4px;">⬜</span><strong style="color: #ff7faa; font-weight: bold;">Function Calling</strong>：让模型连接真实世界的唯一桥梁。</li>
+</ul>
+<h3 style="font-size: 17px; font-weight: bold; color: #222; margin-top: 30px; margin-bottom: 16px;">3. 编排层 (Orchestration)</h3>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;"><em>这是 2026 年的核心战场。</em></p>
+<ul style="list-style-type: none; padding-left: 0; margin-bottom: 24px;">
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;">- <strong style="color: #ff7faa; font-weight: bold;">LangGraph</strong>：唯一推荐。</li>
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;">- <em>核心逻辑</em>：State (状态) + Edge (流转)。</li>
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;">- <em>心法</em>：把“思考过程”画成图，而不是写成链。</li>
+</ul>
+<h3 style="font-size: 17px; font-weight: bold; color: #222; margin-top: 30px; margin-bottom: 16px;">4. 数据与记忆 (Data &amp; Memory)</h3>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;"><em>回归朴素，拒绝高大上。</em></p>
+<ul style="list-style-type: none; padding-left: 0; margin-bottom: 24px;">
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;">- <strong style="color: #ff7faa; font-weight: bold;">存储</strong>：SQLite / DuckDB / JSON</li>
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;">- <em>原则</em>：能用文件解决的，绝不起数据库服务。</li>
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;">- <strong style="color: #ff7faa; font-weight: bold;">工具</strong>：Pandas</li>
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;">- <em>用途</em>：清洗数据，喂给 AI 吃。</li>
+</ul>
+<hr />
+<h2 style="display: block; font-size: 20px; font-weight: bold; color: #222; margin-top: 40px; margin-bottom: 20px; border-left: 3px solid #ff7faa; padding-left: 12px; line-height: 1.4;">🛠️ 工程规范清单</h2>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;"><em>像外科医生一样精准管理你的代码。</em></p>
+<ul style="list-style-type: none; padding-left: 0; margin-bottom: 24px;">
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;"><span style="margin-right: 4px;">⬜</span><strong style="color: #ff7faa; font-weight: bold;">目录结构</strong>：
+  <pre style="display: block; background: #282c34; color: #abb2bf; padding: 12px; border-radius: 5px; overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 20px 0; font-family: Menlo, Monaco, Consolas, 'Courier New', monospace; font-size: 13px; line-height: 1.5;"><code style="background: transparent; padding: 0; color: inherit; white-space: pre;">  project/
+  ├── agents/       # 大脑 (Planner, Executor)
+  ├── tools/        # 手脚 (File, SQL, Search)
+  ├── graphs/       # 神经 (Main Logic)
+  ├── memory/       # 记忆 (JSON/SQLite)
+  └── main.py       # 启动</code></pre></li>
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;"><span style="margin-right: 4px;">⬜</span><strong style="color: #ff7faa; font-weight: bold;">版本控制</strong>：Git 是底线。每个 Commit 都是思考的快照。</li>
+<li style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;"><span style="margin-right: 4px;">⬜</span><strong style="color: #ff7faa; font-weight: bold;">README</strong>：必须写。第一行就要说人话：“这个 Agent 解决了什么具体问题”。</li>
+</ul>
+<hr />
+<h2 style="display: block; font-size: 20px; font-weight: bold; color: #222; margin-top: 40px; margin-bottom: 20px; border-left: 3px solid #ff7faa; padding-left: 12px; line-height: 1.4;">🚀 立即行动 (Action Plan)</h2>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;"><em>今晚任务（限时 120 分钟）：</em></p>
+<ol style="list-style-type: none; padding-left: 0; margin-bottom: 24px;">
+<li style="margin-bottom: 10px; padding-left: 34px; text-indent: -34px;"><span style="font-weight: bold; color: #ff7faa; margin-right: 6px;">①</span><strong style="color: #ff7faa; font-weight: bold;">新建 Repo</strong>：不要想名字，叫 <code>my-first-agent</code> 即可。</li>
+<li style="margin-bottom: 10px; padding-left: 34px; text-indent: -34px;"><span style="font-weight: bold; color: #ff7faa; margin-right: 6px;">②</span><strong style="color: #ff7faa; font-weight: bold;">写一句宣言</strong>：在 README 里写下：“本项目旨在把 [你的某个具体经验] 转化为可执行代码。”</li>
+<li style="margin-bottom: 10px; padding-left: 34px; text-indent: -34px;"><span style="font-weight: bold; color: #ff7faa; margin-right: 6px;">③</span><strong style="color: #ff7faa; font-weight: bold;">跑通 Hello World</strong>：用 LangGraph 写一个最简单的循环——用户输入 -&gt; AI 思考 -&gt; AI 回复。</li>
+</ol>
+<p style="font-size: 16px; margin-bottom: 16px; text-align: left;"><strong style="color: #ff7faa; font-weight: bold;">一旦代码跑起来，你就已经领先了 99% 还在囤积教程的人。</strong></p>
+    </div>
+    

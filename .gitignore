@@ -187,3 +187,4 @@ Thumbs.db
 
 # PDF files
 *.pdf
+.env
