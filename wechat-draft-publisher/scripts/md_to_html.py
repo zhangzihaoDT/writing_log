@@ -13,6 +13,7 @@ def convert_md_to_html(md_path, html_path):
     # Configuration
     highlight_color = "#ff7faa"
     font_size_title = "20px"
+    font_size_subtitle = "17px"
     font_size_content = "16px"
     line_height = "1.6"
     paragraph_spacing = "16px"
@@ -27,34 +28,34 @@ def convert_md_to_html(md_path, html_path):
     # Post-processing styles
     
     # Headers
-    # H1 & H2: 20px, bold, dark color, with highlighted left border
-    header_style = f'style="font-size: {font_size_title}; font-weight: bold; color: #333; margin-top: 24px; margin-bottom: 16px; border-left: 4px solid {highlight_color}; padding-left: 10px;"'
+    # H1 & H2: Professional Section Headers
+    # Style: Left border + light background fade + dark red accent
+    header_style = f'style="display: block; font-size: {font_size_title}; font-weight: bold; color: #222; margin-top: 40px; margin-bottom: 20px; border-left: 3px solid {highlight_color}; padding-left: 12px; line-height: 1.4;"'
     styled_html = styled_html.replace('<h1>', f'<h1 {header_style}>')
     styled_html = styled_html.replace('<h2>', f'<h2 {header_style}>')
     
-    # H3: 18px (slightly distinct), dark color
-    h3_style = f'style="font-size: 18px; font-weight: bold; color: #333; margin-top: 20px; margin-bottom: 12px;"'
+    # H3: Sub-section Headers
+    # Style: Bold, slightly larger, no border
+    h3_style = f'style="font-size: {font_size_subtitle}; font-weight: bold; color: #222; margin-top: 30px; margin-bottom: 16px;"'
     styled_html = styled_html.replace('<h3>', f'<h3 {h3_style}>')
     
-    # Paragraphs: 16px, spacing 16px, left align
+    # Paragraphs
     p_style = f'style="font-size: {font_size_content}; margin-bottom: {paragraph_spacing}; text-align: left;"'
     styled_html = styled_html.replace('<p>', f'<p {p_style}>')
     
     # Blockquotes
-    blockquote_style = 'style="border-left: 4px solid #ddd; padding-left: 10px; color: #666; margin: 16px 0;"'
+    # Style: Light gray background + left border
+    blockquote_style = f'style="background: #f7f7f7; border-left: 2px solid {highlight_color}; padding: 16px; color: #555; margin: 24px 0; border-radius: 4px;"'
     styled_html = styled_html.replace('<blockquote>', f'<blockquote {blockquote_style}>')
     
     # Strong/Bold: Apply highlight color
     strong_style = f'style="color: {highlight_color}; font-weight: bold;"'
     styled_html = styled_html.replace('<strong>', f'<strong {strong_style}>')
     
-    # HR: Replace with extra spacing (empty div or margin)
-    # Instead of a visible line, we use a spacer
-    hr_style = 'style="border: none; margin-top: 40px; margin-bottom: 40px;"'
+    # HR: Divider
+    hr_style = 'style="border: none; border-top: 1px solid #eee; margin: 50px 0;"'
     styled_html = styled_html.replace('<hr>', f'<hr {hr_style}>')
-    # Or replace it with a spacer div entirely if hr still shows a line in some renderers (though border:none should work)
-    # styled_html = styled_html.replace('<hr>', f'<div style="height: 40px;"></div>') 
-    # Let's stick to styled HR for semantic correctness but visual spacing
+
     
     # Lists: Custom bullet point "-" and Circle Numbers "①"
     # Process lists with a stack to handle nesting and distinguish UL/OL
@@ -62,14 +63,15 @@ def convert_md_to_html(md_path, html_path):
         circle_nums = "①②③④⑤⑥⑦⑧⑨⑩⑪⑫⑬⑭⑮⑯⑰⑱⑲⑳"
         
         # Styles
-        ul_style = 'style="list-style-type: none; padding-left: 0; margin-bottom: 16px;"'
-        ol_style = 'style="list-style-type: none; padding-left: 0; margin-bottom: 16px;"'
+        ul_style = 'style="list-style-type: none; padding-left: 0; margin-bottom: 24px;"'
+        ol_style = 'style="list-style-type: none; padding-left: 0; margin-bottom: 24px;"'
         
         # LI styles
         # UL LI: Short dash
-        li_ul_style = 'style="margin-bottom: 8px; padding-left: 20px; text-indent: -14px;"'
+        li_ul_style = 'style="margin-bottom: 10px; padding-left: 20px; text-indent: -14px;"'
         # OL LI: Circle number (Need more indent)
-        li_ol_style = 'style="margin-bottom: 8px; padding-left: 34px; text-indent: -34px;"'
+        li_ol_style = 'style="margin-bottom: 10px; padding-left: 34px; text-indent: -34px;"'
+
         
         pattern = re.compile(r'(</?(?:ul|ol|li)>)')
         parts = pattern.split(html_content)
@@ -116,7 +118,7 @@ def convert_md_to_html(md_path, html_path):
                     
                     num_str = circle_nums[count] if count < len(circle_nums) else f"{count+1}."
                     # Styled number
-                    num_span = f'<span style="font-weight: bold; color: #333; margin-right: 6px;">{num_str}</span>'
+                    num_span = f'<span style="font-weight: bold; color: {highlight_color}; margin-right: 6px;">{num_str}</span>'
                     output.append(f'<li {li_ol_style}>{num_span}')
             elif part == '</li>':
                 output.append('</li>')
