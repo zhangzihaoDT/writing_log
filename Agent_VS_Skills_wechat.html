@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8"/>
+<title>Hara Style Template</title>
+
+</head>
+<body style="font-family: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Helvetica Neue', Arial, sans-serif; color: #1a1a1a; background-color: #ffffff; line-height: 1.8; font-size: 16px; letter-spacing: 0.05em; margin: 0; padding: 20px; text-align: left;">
+<h1 style="font-size: 24px; font-weight: 600; line-height: 1.4; margin-top: 60px; margin-bottom: 30px; letter-spacing: 0.1em; border-bottom: 1px solid #000; padding-bottom: 10px;">Agent 与 Skill：从概念混淆到工程分野</h1>
+<p style="margin-bottom: 20px; text-align: left;">本文旨在厘清 Anthropic 最新提出的 <strong style="font-weight: 600; color: #000;">Agent Skills</strong> 概念与传统语境下的 <strong style="font-weight: 600; color: #000;">Skill</strong> 之间的本质差异，并从工程视角解构 <strong style="font-weight: 600; color: #000;">Agent (智能体)</strong> 与 <strong style="font-weight: 600; color: #000;">Skill (技能)</strong> 的边界。</p>
+<h2 style="font-size: 20px; font-weight: 600; margin-top: 40px; margin-bottom: 20px; padding-left: 12px; border-left: 4px solid #000;">一、 Anthropic Agent Skills vs. 传统 Agent Skill</h2>
+<p style="margin-bottom: 20px; text-align: left;"><strong style="font-weight: 600; color: #000;">核心差异</strong>：这是“模块化标准”与“内部功能实现”的区别。</p>
+<h3 style="font-size: 17px; font-weight: 600; margin-top: 30px; margin-bottom: 15px; color: #333;">1. 传统 Agent 中的 "Skill"</h3>
+<ul style="list-style: none; padding-left: 0; margin-bottom: 20px;">
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">定义</strong>：Agent 内部预定义的单一能力（Function/Tool）。</span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">形态</strong>：通常硬编码在 Agent 的 System Prompt 或代码逻辑中（例如：“你是一个擅长写代码的助手”）。</span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">局限</strong>：</span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">Context 爆炸</strong>：所有技能的定义都必须塞进上下文，导致 Token 消耗巨大。</span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">不可复用</strong>：技能与 Agent 深度绑定，难以迁移。</span></li>
+</ul>
+<h3 style="font-size: 17px; font-weight: 600; margin-top: 30px; margin-bottom: 15px; color: #333;">2. Anthropic 定义的 "Agent Skills"</h3>
+<ul style="list-style: none; padding-left: 0; margin-bottom: 20px;">
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">定义</strong>：独立于 Agent 的、模块化的、可复用的能力包标准。</span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">机制</strong>：<strong style="font-weight: 600; color: #000;">渐进式披露 (Progressive Disclosure)</strong>。</span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span>Agent 运行时仅加载 Skill 的 <strong style="font-weight: 600; color: #000;">Metadata</strong> (元数据)。</span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span>只有当 Agent 决定调用该 Skill 时，才会动态加载具体的 Prompt 和工具定义。</span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">本质</strong>：它是 Agent 生态的<strong style="font-weight: 600; color: #000;">“可插拔插件 (Plugin)”</strong>，实现了能力与载体的解耦。</span></li>
+</ul>
+<hr style="border: 0; height: 1px; background: #eee; margin: 60px 0;"/>
+<h2 style="font-size: 20px; font-weight: 600; margin-top: 40px; margin-bottom: 20px; padding-left: 12px; border-left: 4px solid #000;">二、 Agent 与 Skill 的工程分野</h2>
+<p style="margin-bottom: 20px; text-align: left;">如果将 Agent 系统视为一家公司，<strong style="font-weight: 600; color: #000;">Agent 是拥有主权的决策者 (CEO/Manager)，Skill 是被调度的 SOP (标准作业程序)。</strong></p>
+<h3 style="font-size: 17px; font-weight: 600; margin-top: 30px; margin-bottom: 15px; color: #333;">1. Framework 维度：谁负责闭环？</h3>
+<p style="margin-bottom: 20px; text-align: left;"><strong style="font-weight: 600; color: #000;">Agent 是“状态机 + 决策者”。</strong> 它必须站在 Framework 层，负责全局的闭环。</p>
+<ul style="list-style: none; padding-left: 0; margin-bottom: 20px;">
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">Plan (规划)</strong>：拆解目标，判断当前该做什么。</span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">Memory (记忆)</strong>：记住历史交互，提取经验。</span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">Context (上下文)</strong>：控制 Token 预算，决定信息取舍。</span></li>
+</ul>
+<p style="margin-bottom: 20px; text-align: left;"><strong style="font-weight: 600; color: #000;">Skill 是“被调度的行为结构”。</strong> 它只负责把一段“可复用的做事方式”跑清楚。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">职责</th>
+<th style="text-align: left;">Agent</th>
+<th style="text-align: left;">Skill</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;"><strong style="font-weight: 600; color: #000;">决策 (Plan)</strong></td>
+<td style="text-align: left;">✅ <strong style="font-weight: 600; color: #000;">核心职责</strong></td>
+<td style="text-align: left;">❌ 无权决策</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong style="font-weight: 600; color: #000;">记忆 (Memory)</strong></td>
+<td style="text-align: left;">✅ 全局记忆</td>
+<td style="text-align: left;">❌ 无记忆 (Stateless)</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong style="font-weight: 600; color: #000;">执行 (Act)</strong></td>
+<td style="text-align: left;">✅ 调度者</td>
+<td style="text-align: left;">⚠️ 仅定义步骤</td>
+</tr>
+</tbody>
+</table>
+<h3 style="font-size: 17px; font-weight: 600; margin-top: 30px; margin-bottom: 15px; color: #333;">2. Tools 维度：谁在直接干活？</h3>
+<p style="margin-bottom: 20px; text-align: left;">不要混淆 Tool (工具) 与 Skill (技能)。</p>
+<ul style="list-style: none; padding-left: 0; margin-bottom: 20px;">
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">Tool = 枪 / 炮 / 雷达</strong></span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><em style="font-style: normal; color: #7f7f7f; font-size: 0.95em;">定义</em>：原子的、无业务含义的功能。</span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><em style="font-style: normal; color: #7f7f7f; font-size: 0.95em;">示例</em>：<code style="font-family: 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace; font-size: 13px; color: #333;">query_sql(table, condition)</code>, <code style="font-family: 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace; font-size: 13px; color: #333;">http_get(url)</code>.</span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">Skill = 战术手册</strong></span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><em style="font-style: normal; color: #7f7f7f; font-size: 0.95em;">定义</em>：工具 + 顺序 + 约束 + 判断规则。</span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><em style="font-style: normal; color: #7f7f7f; font-size: 0.95em;">示例</em>：“销量分析 Skill” = 1.校验口径 → 2.调用<code style="font-family: 'Menlo', 'Monaco', 'Consolas', 'Courier New', monospace; font-size: 13px; color: #333;">query_sql</code> → 3.异常值清洗 → 4.生成解释。</span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">Agent = 指挥官</strong></span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><em style="font-style: normal; color: #7f7f7f; font-size: 0.95em;">定义</em>：决定用不用战术，用哪个战术，战术失败了怎么办。</span></li>
+</ul>
+<h3 style="font-size: 17px; font-weight: 600; margin-top: 30px; margin-bottom: 15px; color: #333;">3. Sandbox 维度：谁对体验负责？</h3>
+<ul style="list-style: none; padding-left: 0; margin-bottom: 20px;">
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">Agent (产品界面)</strong>：Agent 直接面向用户，负责整体体验（User Experience）。它需要处理对话的连贯性、错误时的安抚（兜底策略）以及用户意图的最终确认。</span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">Skill (黑盒执行)</strong>：Skill 运行在 Agent 提供的沙箱（Sandbox）中。它不直接面对用户，只对“输入”和“输出”的正确性负责。</span></li>
+</ul>
+<hr style="border: 0; height: 1px; background: #eee; margin: 60px 0;"/>
+<blockquote style="margin: 30px 0; padding: 20px; background-color: #fafafa; border-left: none; color: #555; font-size: 0.95em; position: relative;"><span style="font-size: 40px; color: #e0e0e0; font-family: serif; display: block; line-height: 1; margin-bottom: -10px;">“</span>
+<p style="margin-bottom: 20px; text-align: left;"><strong style="font-weight: 600; color: #000;">总结</strong></p>
+<ul style="list-style: none; padding-left: 0; margin-bottom: 20px;">
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">Agent</strong> 管全局，负责“做正确的事” (Do the right things)。</span></li>
+<li style="margin-bottom: 0; display: flex; align-items: baseline; line-height: 1.5;"><span style="margin-right: 0px; flex-shrink: 0; color: #1a1a1a;"></span><span><strong style="font-weight: 600; color: #000;">Skill</strong> 管局部，负责“把事做正确” (Do things right)。</span></li>
+</ul>
+</blockquote>
+<p style="margin-bottom: 20px; text-align: left;"><img alt="AI Stack V2" src="/Users/zihao_/Downloads/ai_stack_v2_opt1_portrait.png"/></p>
+</body>
+</html>
